@@ -1,6 +1,6 @@
 # ECLOUD
 Blockchain for peer to peer energy exchange
-READ.ME
+READ.ME (v 02/2018)
 *******
 List and explanation of the files:
 ----------------------------------
@@ -8,6 +8,18 @@ List and explanation of the files:
  		+ this is the basic blockchain to test the logic to build a complete chaine in Python.
 		+ test peer to peer energy exchange type "E-Cloud" with 1 generator (george) and 3 customers (anne,bob,carla)
 		+ shares for each customer are fixed (e.g. a=50%, b = 30%, c =20%)
+	
+	voting ledger ver_2.py
+		+ separate BlockChain to test voting process based on paper PSCC (no integration of the transaction): 1000 blocks are created (see line 307)
+		+ each agent is candidate for every steps
+		+ initial balot 100 units / candidates
+		+ initial rules : purely ramdomized based on ledger + no creation of new voting token
+		+ a special dict is created to facilitate the analyse of the process. This dict is exported to a csv file
+		+ /!\ create an empty extract_csv.csv
+		+ /!\ need to change line 319 to indicate your path to this csv file
+
+	analyse typical voting process.xlsx
+		+ this file is an analyse of the voting process using voting ledger ver_2
 
 	test scheduling task.py
 		+ this is a working file to test different way to schedul task. (ie apscheduler)
@@ -17,19 +29,22 @@ List and explanation of the files:
 		+ this is a working file to test differentway to sign transaction (txn) and to verify the signature
 		+ when it will be ready, it will be integrated in basic blockchain.py to signed transaction (= proxy of cryptometers)
 
-To do list (status: January 7Th 2018):
+To do list (status: February 11Th 2018):
 ------------------------------
-	1) create voting token
-	2) create consensus model and decision about miner (see PSCC article)
-		2.1) get info from the voting ledger about reputation and age of last block
-		2.2) create standard rules to vote (e.g. George keep 20 % of the voting token when creating a kWh,find rules for anne, bob and carla
-		2.3) generate random number 'u' (/!\ use secrets libraty to generate secure random numbers for managing secrets)
+	1) create voting token : OK DONE
+	2) create consensus model and decision about miner (see PSCC article): 
+		2.1) get info from the voting ledger about reputation and age of last block : 
+			OK DONE
+		2.2) create standard rules to vote (e.g. George keep 20 % of the voting token when creating a kWh,find rules for anne, bob and carla) 
+			OK DONE BUT DIFFERENT STRATEGIES NEED TO BE TESTED
+		2.3) generate random number 'u' (/!\ use secrets libraty to generate secure random numbers for managing secrets): 
+			To be Checked
 		2.4) create specific txn "mining winner" + set rules to pay the miner (e.g. waiting 6 blocks to defreeze the voting token) + penality rules if miner failed
-	3) create block on a synchronise manner (e.g. each 15 seconds as a proxy for 1/4h exchange ledger)
-	4) for each transaction add Txn_Id and signature (mimic cryptometer)
-	5) deploy solution on decentralized way
+	3) (new point) Integrate transaction blockchain and voting blockchain
+	4) create block on a synchronise manner (e.g. each 15 seconds as a proxy for 1/4h exchange ledger)
+	5) for each transaction add Txn_Id and signature (mimic cryptometer)
+	6) deploy solution on decentralized way
 	
-note: actions 2 and 3 could be done in //
 
 
 Explanation about block structure
